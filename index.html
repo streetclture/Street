@@ -1,97 +1,179 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таймер до 9 мая 07:00 (МСК)</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+  <meta charset="UTF-8">
+  <title>Таймер с меню</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @font-face {
+      font-family: 'Swiss911';
+      src: url('swiss911compressedrusbyme.otf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Archivo Black', sans-serif;
-            text-align: center;
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      overflow-x: hidden;
+      font-family: 'Swiss911', Arial, sans-serif;
+    }
 
-        .timer {
-            font-size: 6rem;
-            color: black;
-            margin-bottom: 40px;
-        }
+    /* Кнопка меню */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 100;
+      padding: 15px;
+    }
 
-        .photo-container {
-            width: 100%;
-            max-width: 300px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.1s;
-        }
+    .menu-btn span {
+      display: block;
+      width: 40px;
+      height: 4px;
+      background: black;
+      margin: 8px 0;
+    }
 
-        .photo-container:active {
-            transform: scale(0.95);
-        }
+    @media (max-width: 600px) {
+      .menu-btn span {
+        width: 36px;
+        height: 4px;
+      }
+    }
 
-        .photo-container img {
-            width: 100%;
-            display: block;
-            pointer-events: none;
-        }
+    /* Меню-шторка */
+    .menu {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100%;
+      background: black;
+      transition: 0.4s;
+      z-index: 90;
+      padding-top: 80px;
+    }
 
-        @media (max-width: 600px) {
-            .timer {
-                font-size: 3rem;
-            }
+    .menu.active {
+      left: 0;
+    }
 
-            .photo-container {
-                width: 80%;
-            }
-        }
-    </style>
+    .menu-item {
+      color: white;
+      font-size: 28px;
+      padding: 18px 30px;
+      border-bottom: 2px solid #333;
+      letter-spacing: 1px;
+    }
+
+    /* Контент */
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 60px 20px;
+      box-sizing: border-box;
+    }
+
+    .timer {
+      font-size: 80px;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .timer {
+        font-size: 48px;
+      }
+    }
+
+    .photo {
+      width: 320px;
+      max-width: 100%;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .photo:active {
+      transform: scale(0.95);
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Кнопка меню -->
+  <button class="menu-btn" id="menuBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Меню -->
+  <div class="menu" id="menu">
+    <div class="menu-item">Events</div>
+    <div class="menu-item">Shop</div>
+    <div class="menu-item">Q&A</div>
+  </div>
+
+  <!-- Контент -->
+  <div class="content">
     <div class="timer" id="timer">00:00:00:00</div>
+    <img class="photo" src="img_8931.png" alt="Фото">
+  </div>
 
-    <div class="photo-container">
-        <img src="IMG_8931.PNG" alt="Фото">
-    </div>
+  <script>
+    // Таймер до 9 мая 2025 07:00 (МСК = UTC+3)
+    const targetDate = new Date("2025-05-09T04:00:00Z");
 
-    <script>
-        // Конечная точка: 9 мая 2025 года, 19:00 по МСК (UTC+3)
-        const targetDate = new Date('2025-05-09T16:00:00Z'); // UTC = МСК - 3 часа
+    function updateTimer() {
+      const now = new Date();
+      const diff = Math.floor((targetDate - now) / 1000); // в секундах
+      const timer = document.getElementById("timer");
 
-        function updateTimer() {
-            const now = new Date();
-            const diff = Math.floor((targetDate - now) / 1000); // разница в секундах
-            const timerEl = document.getElementById('timer');
+      if (diff <= 0) {
+        timer.textContent = "00:00:00:00";
+        timer.style.color = "red";
+        return;
+      }
 
-            if (diff <= 0) {
-                timerEl.textContent = "00:00:00:00";
-                timerEl.style.color = "red";
-                return;
-            }
+      const days = Math.floor(diff / 86400);
+      const hours = Math.floor((diff % 86400) / 3600);
+      const minutes = Math.floor((diff % 3600) / 60);
+      const seconds = diff % 60;
 
-            let d = Math.floor(diff / 86400);
-            let h = Math.floor((diff % 86400) / 3600);
-            let m = Math.floor((diff % 3600) / 60);
-            let s = diff % 60;
+      timer.textContent =
+        String(days).padStart(2, '0') + ":" +
+        String(hours).padStart(2, '0') + ":" +
+        String(minutes).padStart(2, '0') + ":" +
+        String(seconds).padStart(2, '0');
 
-            timerEl.textContent =
-                d.toString().padStart(2, '0') + ':' +
-                h.toString().padStart(2, '0') + ':' +
-                m.toString().padStart(2, '0') + ':' +
-                s.toString().padStart(2, '0');
+      setTimeout(updateTimer, 1000);
+    }
 
-            setTimeout(updateTimer, 1000);
-        }
+    updateTimer();
 
-        window.onload = updateTimer;
-    </script>
+    // Меню
+    const menuBtn = document.getElementById("menuBtn");
+    const menu = document.getElementById("menu");
+
+    menuBtn.onclick = function () {
+      menu.classList.toggle("active");
+    };
+
+    document.addEventListener('click', function (e) {
+      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        menu.classList.remove("active");
+      }
+    });
+  </script>
 </body>
 </html>
