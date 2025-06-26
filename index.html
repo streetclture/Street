@@ -1,97 +1,195 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таймер до 9 мая 07:00 (МСК)</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+  <meta charset="UTF-8">
+  <title>STRET</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @font-face {
+      font-family: 'Swiss911';
+      src: url('Swiss911CompressedRegular.ttf') format('truetype');
+    }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Archivo Black', sans-serif;
-            text-align: center;
-        }
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: 'Swiss911', Arial, sans-serif;
+      overflow-x: hidden;
+    }
 
-        .timer {
-            font-size: 6rem;
-            color: black;
-            margin-bottom: 40px;
-        }
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 100;
+      padding: 15px;
+    }
 
-        .photo-container {
-            width: 100%;
-            max-width: 300px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.1s;
-        }
+    .menu-btn span {
+      display: block;
+      width: 30px;
+      height: 4px;
+      background: white;
+      margin: 6px 0;
+    }
 
-        .photo-container:active {
-            transform: scale(0.95);
-        }
+    .menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
+      background: black;
+      transition: 0.4s;
+      z-index: 90;
+      padding-top: 80px;
+    }
 
-        .photo-container img {
-            width: 100%;
-            display: block;
-            pointer-events: none;
-        }
+    .menu.active {
+      right: 0;
+    }
 
-        @media (max-width: 600px) {
-            .timer {
-                font-size: 3rem;
-            }
+    .menu-item {
+      color: white;
+      font-size: 28px;
+      padding: 18px 30px;
+      border-bottom: 2px solid #333;
+      letter-spacing: 1px;
+    }
 
-            .photo-container {
-                width: 80%;
-            }
-        }
-    </style>
+    .header {
+      text-align: center;
+      padding-top: 60px;
+    }
+
+    .logo {
+      width: 160px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .bg-photo {
+      width: 100%;
+      max-height: 600px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .logo-strip {
+      display: flex;
+      overflow-x: auto;
+      background: black;
+      border-top: 2px solid white;
+      border-bottom: 2px solid white;
+    }
+
+    .logo-strip img {
+      height: 60px;
+      padding: 10px 20px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      text-align: left;
+      padding: 30px 20px 10px;
+      text-transform: uppercase;
+      border-bottom: 2px solid white;
+    }
+
+    .event-block {
+      background: white;
+      color: black;
+      margin: 20px;
+      padding: 40px 20px;
+      text-align: center;
+      font-family: monospace;
+    }
+
+    .event-block .date {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+
+    .event-block .title {
+      font-size: 44px;
+      margin: 20px 0;
+      font-weight: bold;
+      letter-spacing: 8px;
+    }
+
+    .event-block .artists {
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 600px) {
+      .event-block .title {
+        font-size: 32px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="timer" id="timer">00:00:00:00</div>
 
-    <div class="photo-container">
-        <img src="IMG_8931.PNG" alt="Фото">
+  <!-- Кнопка меню -->
+  <button class="menu-btn" id="menuBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Меню -->
+  <div class="menu" id="menu">
+    <div class="menu-item">Events</div>
+    <div class="menu-item">Shop</div>
+    <div class="menu-item">Q&A</div>
+  </div>
+
+  <!-- Логотип и фон -->
+  <div class="header">
+    <img src="logo.png" class="logo" alt="STRET Logo">
+  </div>
+  <img src="crowd.jpg" class="bg-photo" alt="Background Crowd">
+
+  <!-- Полоса с логотипами -->
+  <div class="logo-strip">
+    <img src="logo.png" alt="logo">
+    <img src="logo.png" alt="logo">
+    <img src="logo.png" alt="logo">
+    <img src="logo.png" alt="logo">
+    <img src="logo.png" alt="logo">
+  </div>
+
+  <!-- Событие -->
+  <div class="section-title">Events</div>
+  <div class="event-block">
+    <div class="title">PARTY</div>
+    <div class="date">09.05.2025</div>
+    <div class="artists">
+      MAELKVAC<br>
+      VLADLEN MALYSHKA<br>
+      YUKOV
     </div>
+  </div>
 
-    <script>
-        // Конечная точка: 9 мая 2025 года, 19:00 по МСК (UTC+3)
-        const targetDate = new Date('2025-05-09T16:00:00Z'); // UTC = МСК - 3 часа
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const menu = document.getElementById("menu");
 
-        function updateTimer() {
-            const now = new Date();
-            const diff = Math.floor((targetDate - now) / 1000); // разница в секундах
-            const timerEl = document.getElementById('timer');
+    menuBtn.onclick = function () {
+      menu.classList.toggle("active");
+    };
 
-            if (diff <= 0) {
-                timerEl.textContent = "00:00:00:00";
-                timerEl.style.color = "red";
-                return;
-            }
+    document.addEventListener('click', function (e) {
+      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        menu.classList.remove("active");
+      }
+    });
+  </script>
 
-            let d = Math.floor(diff / 86400);
-            let h = Math.floor((diff % 86400) / 3600);
-            let m = Math.floor((diff % 3600) / 60);
-            let s = diff % 60;
-
-            timerEl.textContent =
-                d.toString().padStart(2, '0') + ':' +
-                h.toString().padStart(2, '0') + ':' +
-                m.toString().padStart(2, '0') + ':' +
-                s.toString().padStart(2, '0');
-
-            setTimeout(updateTimer, 1000);
-        }
-
-        window.onload = updateTimer;
-    </script>
 </body>
 </html>
