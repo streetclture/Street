@@ -1,4 +1,4 @@
-quicktime, [03.07.2025 9:59]
+quicktime, [03.07.2025 9:52]
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -26,16 +26,16 @@ quicktime, [03.07.2025 9:59]
       background: none;
       border: none;
       cursor: pointer;
-      z-index: 100;
+      z-index: 200;
       padding: 10px;
     }
 
     .menu-btn span {
       display: block;
-      width: 30px;
-      height: 4px;
+      width: 28px;
+      height: 3px;
       background: white;
-      margin: 6px 0;
+      margin: 5px 0;
     }
 
     .menu {
@@ -45,8 +45,8 @@ quicktime, [03.07.2025 9:59]
       width: 300px;
       height: 100%;
       background: black;
-      transition: 0.4s;
-      z-index: 90;
+      transition: right 0.4s;
+      z-index: 150;
       padding-top: 80px;
     }
 
@@ -64,11 +64,13 @@ quicktime, [03.07.2025 9:59]
 
     .header {
       text-align: center;
-      padding-top: 20px;
+      padding-top: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .logo {
-      width: 160px;
+      width: 140px;
       margin: 0 auto;
       display: block;
     }
@@ -84,58 +86,67 @@ quicktime, [03.07.2025 9:59]
       display: flex;
       overflow-x: auto;
       background: black;
-      border-top: 2px solid white;
-      border-bottom: 2px solid white;
+      border-top: 1px solid white;
+      border-bottom: 1px solid white;
     }
 
     .logo-strip img {
       height: 40px;
-      padding: 6px 10px;
+      padding: 6px 14px;
     }
 
     .section-title {
-      font-size: 32px;
+      font-size: 28px;
       text-align: left;
-      padding: 20px;
+      padding: 24px 20px 10px;
       text-transform: uppercase;
-      border-bottom: none;
+      margin-bottom: 0;
+      border: none;
     }
 
     .event-scroll {
       display: flex;
-      overflow: hidden;
+      overflow-x: auto;
+      gap: 16px;
+      padding: 20px;
       scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
       scroll-behavior: smooth;
-      touch-action: pan-y;
     }
 
     .event-block {
-      flex: 0 0 100%;
+      flex: 0 0 80%;
       scroll-snap-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      min-width: 260px;
+      max-width: 300px;
+      text-align: center;
     }
 
-    .event-block img {
-      width: 90vw;
-      max-width: 500px;
+    .poster-img {
+      width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
+      display: block;
+      border-radius: 0;
     }
 
     .dots {
-      text-align: center;
+      display: flex;
+      justify-content: center;
       margin-top: 10px;
+      margin-bottom: 30px;
     }
 
     .dot {
-      display: inline-block;
       width: 10px;
       height: 10px;
-      margin: 0 6px;
+      background: #555;
       border-radius: 50%;
-      background: gray;
+      margin: 0 6px;
+      transition: background 0.3s;
     }
 
     .dot.active {
@@ -143,8 +154,8 @@ quicktime, [03.07.2025 9:59]
     }
 
     @media (max-width: 600px) {
-      .event-block img {
-        width: 90vw;
+      .event-block {
+        flex: 0 0 75%;
       }
     }
   </style>
@@ -165,54 +176,66 @@ quicktime, [03.07.2025 9:59]
     <div class="menu-item">Q&A</div>
   </div>
 
-  <!-- Логотип и фон -->
+  <!-- Верх -->
   <div class="header">
     <img src="IMG_8931.png" class="logo" alt="STRET Logo">
   </div>
   <img src="photo_2025-06-26_21-21-35.jpg" class="bg-photo" alt="Background Crowd">
 
-  <!-- Полоса с логотипами -->
+  <!-- Логотипы -->
   <div class="logo-strip">
     <img src="IMG_8931.png" alt="logo">
     <img src="IMG_8931.png" alt="logo">
     <img src="IMG_8931.png" alt="logo">
     <img src="IMG_8931.png" alt="logo">
-    <img src="IMG_8931.png" alt="logo">
   </div>
 
-  <!-- Секция событий -->
+  <!-- Блок Events -->
   <div class="section-title">Events</div>
 
   <div class="event-scroll" id="eventScroll">
-    <div class="event-block"><img src="photo_2025-06-30_16-23-29.jpg" alt="poster1"></div>
-    <div class="event-block"><img src="IMG_9994.JPEG" alt="poster2"></div>
-    <div class="event-block"><img src="IMG_9995.JPEG" alt="poster3"></div>
-    <div class="event-block"><img src="IMG_9996.JPG" alt="poster4"></div>
+    <div class="event-block">
+      <img src="photo_2025-06-30_16-23-29.jpg" alt="Афиша 1" class="poster-img">
+    </div>
+    <div class="event-block">
+      <img src="IMG_9994.JPEG" alt="Афиша 2" class="poster-img">
+    </div>
+    <div class="event-block">
+      <img src="IMG_9995.
+
+quicktime, [03.07.2025 9:52]
+JPEG" alt="Афиша 3" class="poster-img">
+    </div>
+    <div class="event-block">
+      <img src="IMG_9996.JPG" alt="Афиша 4" class="poster-img">
+    </div>
   </div>
 
+  <!-- Индикаторы -->
   <div class="dots" id="dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
   </div>
 
   <script>
-
-quicktime, [03.07.2025 9:59]
-const menuBtn = document.getElementById("menuBtn");
+    // Меню
+    const menuBtn = document.getElementById("menuBtn");
     const menu = document.getElementById("menu");
 
-    menuBtn.onclick = () => {
+    menuBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
       menu.classList.toggle("active");
-    };
+    });
 
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', function (e) {
       if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
         menu.classList.remove("active");
       }
     });
 
+    // Автопрокрутка и точки
     const scrollContainer = document.getElementById('eventScroll');
     const cards = scrollContainer.querySelectorAll('.event-block');
     const dots = document.getElementById('dots').querySelectorAll('.dot');
@@ -221,7 +244,11 @@ const menuBtn = document.getElementById("menuBtn");
     let scrollTimeout;
 
     function scrollToCard(index) {
-      cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+      const card = cards[index];
+      scrollContainer.scrollTo({
+        left: card.offsetLeft - scrollContainer.offsetLeft,
+        behavior: 'smooth'
+      });
       updateDots(index);
     }
 
@@ -253,23 +280,17 @@ const menuBtn = document.getElementById("menuBtn");
     scrollContainer.addEventListener('touchstart', pauseAutoScroll);
     scrollContainer.addEventListener('mousedown', pauseAutoScroll);
 
-    let startX = 0;
-    scrollContainer.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    });
-
-    scrollContainer.addEventListener('touchend', (e) => {
-      const endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-
-      if (Math.abs(diff) > 50) {
-        if (diff > 0 && currentIndex < cards.length - 1) {
-          currentIndex++;
-        } else if (diff < 0 && currentIndex > 0) {
-          currentIndex--;
+    scrollContainer.addEventListener('scroll', () => {
+      const scrollLeft = scrollContainer.scrollLeft;
+      let index = 0;
+      for (let i = 0; i < cards.length; i++) {
+        if (scrollLeft + scrollContainer.offsetWidth / 2 < cards[i].offsetLeft + cards[i].offsetWidth / 2) {
+          index = i;
+          break;
         }
-        scrollToCard(currentIndex);
       }
+      updateDots(index);
+      currentIndex = index;
     });
   </script>
 
