@@ -18,7 +18,7 @@
       overflow-x: hidden;
     }
 
-    /* Кнопка меню с анимацией сжимающегося крестика */
+    /* Кнопка меню с анимацией крестика */
     .menu-btn {
       position: fixed;
       top: 10px;
@@ -27,9 +27,9 @@
       border: none;
       cursor: pointer;
       z-index: 200;
-      padding: 10px;
-      width: 40px;
-      height: 40px;
+      padding: 12px;
+      width: 48px;
+      height: 48px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -37,35 +37,35 @@
 
     .menu-btn span {
       position: absolute;
-      width: 28px;
-      height: 3px;
+      width: 32px;
+      height: 4px;
       background: white;
-      border-radius: 2px;
+      border-radius: 3px;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .menu-btn span:nth-child(1) {
-      top: 10px;
-      left: 6px;
-      transform-origin: left center;
+      top: 12px;
+      left: 8px;
+      transform-origin: center center;
     }
 
     .menu-btn span:nth-child(2) {
-      top: 18px;
-      left: 6px;
+      top: 22px;
+      left: 8px;
     }
 
     .menu-btn span:nth-child(3) {
-      top: 26px;
-      left: 6px;
-      transform-origin: left center;
+      top: 32px;
+      left: 8px;
+      transform-origin: center center;
     }
 
     .menu-btn.active span:nth-child(1) {
-      top: 18px;
-      left: 12px;
-      width: 14px;
-      transform: rotate(45deg) scaleX(0.8);
+      top: 22px;
+      left: 8px;
+      width: 32px;
+      transform: rotate(45deg);
     }
 
     .menu-btn.active span:nth-child(2) {
@@ -74,13 +74,12 @@
     }
 
     .menu-btn.active span:nth-child(3) {
-      top: 18px;
-      left: 12px;
-      width: 14px;
-      transform: rotate(-45deg) scaleX(0.8);
+      top: 22px;
+      left: 8px;
+      width: 32px;
+      transform: rotate(-45deg);
     }
 
-    /* Меню */
     .menu {
       position: fixed;
       top: 0;
@@ -125,7 +124,7 @@
       display: block;
     }
 
-    /* Зацикленная полоса логотипов без пробелов */
+    /* Полоса логотипов с двойным набором для бесшовной прокрутки */
     .logo-strip {
       display: flex;
       overflow: hidden;
@@ -133,33 +132,29 @@
       border-top: 1px solid white;
       border-bottom: 1px solid white;
       position: relative;
-      height: 52px; /* высота с учётом padding */
-      align-items: center;
     }
 
     .logo-strip-inner {
       display: flex;
-      animation: moveLogos 30s linear infinite;
+      min-width: 200%;
+      animation: moveLogosLeft 30s linear infinite;
     }
 
-    .logo-strip-inner:hover {
-      animation-play-state: paused; /* при наведении анимация стоп */
-    }
-
-    @keyframes moveLogos {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .logo-strip img {
+    .logo-strip-inner > img {
       height: 40px;
       padding: 6px 14px;
       flex-shrink: 0;
-      user-select: none;
-      pointer-events: none;
     }
 
-    /* Заголовок секции */
+    @keyframes moveLogosLeft {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
     .section-title {
       font-size: 28px;
       text-align: left;
@@ -169,7 +164,6 @@
       border: none;
     }
 
-    /* Горизонтальный скролл для событий */
     .event-scroll {
       display: flex;
       overflow-x: auto;
@@ -198,15 +192,13 @@
     }
 
     .poster-img {
-
-width: 100%;
+      width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
       border-radius: 0;
     }
 
-    /* Индикаторы */
     .dots {
       display: flex;
       justify-content: center;
@@ -216,7 +208,8 @@ width: 100%;
 
     .dot {
       width: 10px;
-      height: 10px;
+
+height: 10px;
       background: #555;
       border-radius: 50%;
       margin: 0 6px;
@@ -256,9 +249,9 @@ width: 100%;
   </div>
   <img src="photo_2025-06-26_21-21-35.jpg" class="bg-photo" alt="Background Crowd" />
 
-  <!-- Логотипы (двойной набор для бесшовного сдвига) -->
-  <div class="logo-strip" aria-label="Лента логотипов">
-    <div class="logo-strip-inner" aria-hidden="true">
+  <!-- Логотипы (двойной набор для бесшовной прокрутки) -->
+  <div class="logo-strip">
+    <div class="logo-strip-inner">
       <img src="IMG_7312.PNG" alt="logo" />
       <img src="IMG_7312.PNG" alt="logo" />
       <img src="IMG_7312.PNG" alt="logo" />
@@ -267,7 +260,8 @@ width: 100%;
       <img src="IMG_7312.PNG" alt="logo" />
       <img src="IMG_7312.PNG" alt="logo" />
       <img src="IMG_7312.PNG" alt="logo" />
-      <!-- Повтор для зацикливания -->
+
+      <!-- Повтор второй раз для бесшовности -->
       <img src="IMG_7312.PNG" alt="logo" />
       <img src="IMG_7312.PNG" alt="logo" />
       <img src="IMG_7312.PNG" alt="logo" />
@@ -282,7 +276,7 @@ width: 100%;
   <!-- Блок Events -->
   <div class="section-title">Events</div>
 
-  <div class="event-scroll" id="eventScroll" tabindex="0" aria-label="Список событий">
+  <div class="event-scroll" id="eventScroll">
     <div class="event-block">
       <img src="photo_2025-06-30_16-23-29.jpg" alt="Афиша 1" class="poster-img" />
     </div>
@@ -298,11 +292,11 @@ width: 100%;
   </div>
 
   <!-- Индикаторы -->
-  <div class="dots" id="dots" aria-label="Навигация по событиям">
-    <div class="dot active" role="button" aria-label="Слайд 1"></div>
-    <div class="dot" role="button" aria-label="Слайд 2"></div>
-    <div class="dot" role="button" aria-label="Слайд 3"></div>
-    <div class="dot" role="button" aria-label="Слайд 4"></div>
+  <div class="dots" id="dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
   </div>
 
   <script>
@@ -310,13 +304,13 @@ width: 100%;
     const menuBtn = document.getElementById("menuBtn");
     const menu = document.getElementById("menu");
 
-    menuBtn.addEventListener("click", (e) => {
+    menuBtn.addEventListener("click", function (e) {
       e.stopPropagation();
       menu.classList.toggle("active");
       menuBtn.classList.toggle("active");
     });
 
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", function (e) {
       if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
         menu.classList.remove("active");
         menuBtn.classList.remove("active");
@@ -332,18 +326,12 @@ width: 100%;
     let scrollTimeout;
 
     function scrollToCard(index) {
-      if (index < 0) index = 0;
-      if (index >= cards.length) index = cards.length - 1;
-
       const card = cards[index];
       scrollContainer.scrollTo({
-        left: card.
-
-offsetLeft - scrollContainer.offsetLeft,
+        left: card.offsetLeft - scrollContainer.offsetLeft,
         behavior: "smooth",
       });
       updateDots(index);
-      currentIndex = index;
     }
 
     function updateDots(index) {
@@ -352,35 +340,6 @@ offsetLeft - scrollContainer.offsetLeft,
       });
     }
 
-    // Обработка кликов по точкам — переход к слайду
-    dots.forEach((dot, i) => {
-      dot.addEventListener("click", () => {
-        pauseAutoScroll();
-        scrollToCard(i);
-      });
-    });
-
-    // При скролле определяем текущий слайд более точно
-    scrollContainer.addEventListener("scroll", () => {
-      const scrollLeft = scrollContainer.scrollLeft;
-      let closestIndex = 0;
-      let closestDistance = Infinity;
-      cards.forEach((card, i) => {
-        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-        const containerCenter = scrollLeft + scrollContainer.offsetWidth / 2;
-        const distance = Math.abs(containerCenter - cardCenter);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = i;
-        }
-      });
-      if (closestIndex !== currentIndex) {
-        updateDots(closestIndex);
-        currentIndex = closestIndex;
-      }
-    });
-
-    // Автопрокрутка с паузой
     function startAutoScroll() {
       return setInterval(() => {
         if (!autoScrollPaused) {
@@ -395,13 +354,32 @@ offsetLeft - scrollContainer.offsetLeft,
     function pauseAutoScroll() {
       autoScrollPaused = true;
       clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
+
+scrollTimeout = setTimeout(() => {
         autoScrollPaused = false;
       }, 15000);
     }
 
     scrollContainer.addEventListener("touchstart", pauseAutoScroll);
     scrollContainer.addEventListener("mousedown", pauseAutoScroll);
+
+    scrollContainer.addEventListener("scroll", () => {
+      const scrollLeft = scrollContainer.scrollLeft;
+      let index = 0;
+      for (let i = 0; i < cards.length; i++) {
+        const cardCenter =
+          cards[i].offsetLeft + cards[i].offsetWidth / 2 - scrollContainer.offsetLeft;
+        if (scrollLeft + scrollContainer.offsetWidth / 2 < cardCenter) {
+          index = i;
+          break;
+        }
+        if (i === cards.length - 1) {
+          index = cards.length - 1;
+        }
+      }
+      updateDots(index);
+      currentIndex = index;
+    });
   </script>
 </body>
 </html>
