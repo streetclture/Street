@@ -1,4 +1,4 @@
-quicktime, [03.07.2025 8:43]
+quicktime, [03.07.2025 8:56]
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -21,7 +21,7 @@ quicktime, [03.07.2025 8:43]
 
     .menu-btn {
       position: fixed;
-      top: 10px; /* было 20px */
+      top: 10px;
       right: 20px;
       background: none;
       border: none;
@@ -32,8 +32,8 @@ quicktime, [03.07.2025 8:43]
 
     .menu-btn span {
       display: block;
-      width: 26px; /* чуть меньше */
-      height: 3px; /* было 4px */
+      width: 28px;
+      height: 3px;
       background: white;
       margin: 5px 0;
     }
@@ -64,11 +64,11 @@ quicktime, [03.07.2025 8:43]
 
     .header {
       text-align: center;
-      padding-top: 30px; /* было 60px */
+      padding-top: 10px; /* стало меньше */
     }
 
     .logo {
-      width: 140px; /* немного меньше */
+      width: 140px;
       margin: 0 auto;
       display: block;
     }
@@ -89,60 +89,62 @@ quicktime, [03.07.2025 8:43]
     }
 
     .logo-strip img {
-      height: 40px; /* было 60px */
-      padding: 8px 16px;
+      height: 40px;
+      padding: 6px 14px;
     }
 
     .section-title {
-      font-size: 32px;
+      font-size: 28px;
       text-align: left;
-      padding: 30px 20px 10px;
+      padding: 24px 20px 10px;
       text-transform: uppercase;
-      /* удалён нижний бордер */
-      margin-bottom: 10px;
+      margin-bottom: 0;
+      border: none; /* Удалена белая полоска */
     }
 
-    /* Контейнер для прокрутки афиш */
-    .event-scroll-container {
+    /* Контейнер афиш */
+    .event-scroll {
       display: flex;
       overflow-x: auto;
+      gap: 16px;
+      padding: 20px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
-      gap: 16px;
-      padding: 0 20px 40px;
     }
 
     .event-block {
       flex: 0 0 80%;
-      scroll-snap-align: start;
+      scroll-snap-align: center;
       background: white;
       color: black;
       padding: 30px 20px;
       font-family: monospace;
-      border-radius: 10px;
-      min-width: 280px;
-    }
-
-    .event-block .date {
-      font-size: 28px;
-      margin: 10px 0;
+      border-radius: 8px;
+      min-width: 260px;
+      max-width: 300px;
+      text-align: center;
     }
 
     .event-block .title {
       font-size: 36px;
-      margin: 10px 0 20px;
+      margin-bottom: 10px;
       font-weight: bold;
-      letter-spacing: 8px;
+      letter-spacing: 6px;
+    }
+
+    .event-block .date {
+      font-size: 24px;
+      margin: 10px 0;
     }
 
     .event-block .artists {
-      font-size: 16px;
-      line-height: 1.8;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     @media (max-width: 600px) {
-      .event-block .title {
-        font-size: 28px;
+      .event-block {
+        flex: 0 0 75%;
       }
     }
   </style>
@@ -163,24 +165,24 @@ quicktime, [03.07.2025 8:43]
     <div class="menu-item">Q&A</div>
   </div>
 
-  <!-- Логотип и фон -->
+  <!-- Верх -->
   <div class="header">
     <img src="IMG_8931.png" class="logo" alt="STRET Logo">
   </div>
   <img src="photo_2025-06-26_21-21-35.jpg" class="bg-photo" alt="Background Crowd">
 
-  <!-- Полоса с логотипами -->
+  <!-- Бегущая полоска -->
   <div class="logo-strip">
-    <img src="IMG_8931.png" alt="logo">
     <img src="IMG_8931.png" alt="logo">
     <img src="IMG_8931.png" alt="logo">
     <img src="IMG_8931.png" alt="logo">
     <img src="IMG_8931.png" alt="logo">
   </div>
 
-  <!-- События -->
+  <!-- Events -->
   <div class="section-title">Events</div>
-  <div class="event-scroll-container">
+
+  <div class="event-scroll">
     <div class="event-block">
       <div class="title">PARTY</div>
       <div class="date">09.05.2025</div>
@@ -190,15 +192,17 @@ quicktime, [03.07.2025 8:43]
         YUKOV
       </div>
     </div>
-    <!-- Можно добавить ещё афиши сюда -->
+    <div class="event-block">Афиша 2</div>
+    <div class="event-block">Афиша 3</div>
+    <div class="event-block">Афиша 4</div>
   </div>
 
   <script>
-    const menuBtn = document.
+    const menuBtn = document.getElementById("menuBtn");
+    const menu = document.
 
-quicktime, [03.07.2025 8:43]
-getElementById("menuBtn");
-    const menu = document.getElementById("menu");
+quicktime, [03.07.2025 8:56]
+getElementById("menu");
 
     menuBtn.onclick = function () {
       menu.classList.toggle("active");
