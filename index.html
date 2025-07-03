@@ -1,3 +1,4 @@
+quicktime, [03.07.2025 9:12]
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -25,7 +26,7 @@
       background: none;
       border: none;
       cursor: pointer;
-      z-index: 100;
+      z-index: 200;
       padding: 10px;
     }
 
@@ -45,7 +46,7 @@
       height: 100%;
       background: black;
       transition: 0.4s;
-      z-index: 90;
+      z-index: 150;
       padding-top: 80px;
     }
 
@@ -63,7 +64,9 @@
 
     .header {
       text-align: center;
-      padding-top: 10px; /* стало меньше */
+      padding-top: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .logo {
@@ -98,10 +101,9 @@
       padding: 24px 20px 10px;
       text-transform: uppercase;
       margin-bottom: 0;
-      border: none; /* Удалена белая полоска */
+      border: none;
     }
 
-    /* Контейнер афиш */
     .event-scroll {
       display: flex;
       overflow-x: auto;
@@ -109,6 +111,7 @@
       padding: 20px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
 
     .event-block {
@@ -170,7 +173,7 @@
   </div>
   <img src="photo_2025-06-26_21-21-35.jpg" class="bg-photo" alt="Background Crowd">
 
-  <!-- Бегущая полоска -->
+  <!-- Логотипы -->
   <div class="logo-strip">
     <img src="IMG_8931.png" alt="logo">
     <img src="IMG_8931.png" alt="logo">
@@ -178,10 +181,10 @@
     <img src="IMG_8931.png" alt="logo">
   </div>
 
-  <!-- Events -->
+  <!-- Блок Events -->
   <div class="section-title">Events</div>
 
-  <div class="event-scroll">
+  <div class="event-scroll" id="eventScroll">
     <div class="event-block">
       <div class="title">PARTY</div>
       <div class="date">09.05.2025</div>
@@ -198,20 +201,34 @@
 
   <script>
     const menuBtn = document.getElementById("menuBtn");
-    const menu = document.
 
-quicktime, [03.07.2025 8:56]
-getElementById("menu");
+quicktime, [03.07.2025 9:12]
+const menu = document.getElementById("menu");
 
-    menuBtn.onclick = function () {
+    menuBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
       menu.classList.toggle("active");
-    };
+    });
 
     document.addEventListener('click', function (e) {
       if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
         menu.classList.remove("active");
       }
     });
+
+    // Автопрокрутка афиш
+    const scrollContainer = document.getElementById('eventScroll');
+    const cards = scrollContainer.querySelectorAll('.event-block');
+    let currentIndex = 0;
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % cards.length;
+      const card = cards[currentIndex];
+      scrollContainer.scrollTo({
+        left: card.offsetLeft - scrollContainer.offsetLeft,
+        behavior: 'smooth'
+      });
+    }, 10000); // каждые 10 секунд
   </script>
 
 </body>
