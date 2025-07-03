@@ -27,6 +27,8 @@
       cursor: pointer;
       z-index: 200;
       padding: 10px;
+      width: 40px;
+      height: 40px;
     }
 
     .menu-btn span {
@@ -35,6 +37,35 @@
       height: 3px;
       background: white;
       margin: 5px 0;
+      position: absolute;
+      left: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-btn span:nth-child(1) {
+      top: 10px;
+    }
+
+    .menu-btn span:nth-child(2) {
+      top: 18px;
+    }
+
+    .menu-btn span:nth-child(3) {
+      top: 26px;
+    }
+
+    .menu-btn.active span:nth-child(1) {
+      top: 18px;
+      transform: rotate(45deg);
+    }
+
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-btn.active span:nth-child(3) {
+      top: 18px;
+      transform: rotate(-45deg);
     }
 
     .menu {
@@ -44,7 +75,7 @@
       width: 300px;
       height: 100%;
       background: black;
-      transition: right 0.4s;
+      transition: right 0.4s ease;
       z-index: 150;
       padding-top: 80px;
     }
@@ -83,15 +114,27 @@
 
     .logo-strip {
       display: flex;
-      overflow-x: auto;
+      overflow: hidden;
       background: black;
       border-top: 1px solid white;
       border-bottom: 1px solid white;
+      position: relative;
+    }
+
+    .logo-strip-inner {
+      display: flex;
+      animation: moveLogos 20s linear infinite;
+    }
+
+    @keyframes moveLogos {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
     }
 
     .logo-strip img {
       height: 40px;
       padding: 6px 14px;
+      flex-shrink: 0;
     }
 
     .section-title {
@@ -111,6 +154,13 @@
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scroll-behavior: smooth;
+      /* Скрываем scrollbar */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .event-scroll::-webkit-scrollbar {
+      display: none;
     }
 
     .event-block {
@@ -145,11 +195,13 @@
       background: #555;
       border-radius: 50%;
       margin: 0 6px;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
+      cursor: pointer;
     }
 
     .dot.active {
       background: white;
+      transform: scale(1.2);
     }
 
     @media (max-width: 600px) {
@@ -163,7 +215,9 @@
 
   <!-- Кнопка меню -->
   <button class="menu-btn" id="menuBtn">
-    <span></span>
+
+quicktime, [03.07.2025 10:30]
+<span></span>
     <span></span>
     <span></span>
   </button>
@@ -183,10 +237,17 @@
 
   <!-- Логотипы -->
   <div class="logo-strip">
-    <img src="IMG_7312.PNG" alt="logo">
-    <img src="IMG_7312.PNG" alt="logo">
-    <img src="IMG_7312.PNG" alt="logo">
-    <img src="IMG_7312.PNG" alt="logo">
+    <div class="logo-strip-inner">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+      <!-- Дубликаты для бесшовной анимации -->
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+    </div>
   </div>
 
   <!-- Блок Events -->
@@ -200,9 +261,7 @@
       <img src="IMG_9994.JPEG" alt="Афиша 2" class="poster-img">
     </div>
     <div class="event-block">
-      <img src="IMG_9995.
-
-JPEG" alt="Афиша 3" class="poster-img">
+      <img src="IMG_9995.JPEG" alt="Афиша 3" class="poster-img">
     </div>
     <div class="event-block">
       <img src="IMG_9996.JPG" alt="Афиша 4" class="poster-img">
@@ -225,11 +284,13 @@ JPEG" alt="Афиша 3" class="poster-img">
     menuBtn.addEventListener('click', function (e) {
       e.stopPropagation();
       menu.classList.toggle("active");
+      menuBtn.classList.toggle("active");
     });
 
     document.addEventListener('click', function (e) {
       if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
         menu.classList.remove("active");
+        menuBtn.classList.remove("active");
       }
     });
 
@@ -240,8 +301,13 @@ JPEG" alt="Афиша 3" class="poster-img">
     let currentIndex = 0;
     let autoScrollPaused = false;
     let scrollTimeout;
+    let intervalId;
 
     function scrollToCard(index) {
+      if (index < 0) index = cards.length - 1;
+      if (index >= cards.length) index = 0;
+      
+      currentIndex = index;
       const card = cards[index];
       scrollContainer.scrollTo({
         left: card.offsetLeft - scrollContainer.offsetLeft,
@@ -259,37 +325,58 @@ JPEG" alt="Афиша 3" class="poster-img">
     function startAutoScroll() {
       return setInterval(() => {
         if (!autoScrollPaused) {
-          currentIndex = (currentIndex + 1) % cards.length;
-          scrollToCard(currentIndex);
+          scrollToCard((currentIndex + 1) % cards.length);
         }
-      }, 10000);
+      }, 5000);
     }
 
-    let intervalId = startAutoScroll();
+    // Обработчики для точек
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        scrollToCard(index);
+      });
+    });
 
+    // Улучшенный обработчик скролла
+    scrollContainer.addEventListener('scroll', () => {
+      if (autoScrollPaused) return;
+      
+      const containerCenter = scrollContainer.scrollLeft + scrollContainer.offsetWidth / 2;
+      let closestCardIndex = 0;
+      let smallestDistance = Infinity;
+      
+      cards.forEach((card, index) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(containerCenter - cardCenter);
+        
+        if (distance < smallestDistance) {
+          smallestDistance = distance;
+          closestCardIndex = index;
+        }
+      });
+      
+      if (closestCardIndex !== currentIndex) {
+        currentIndex = closestCardIndex;
+
+updateDots(currentIndex);
+      }
+    });
+
+    // Пауза при взаимодействии
     function pauseAutoScroll() {
       autoScrollPaused = true;
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
         autoScrollPaused = false;
-      }, 15000);
+      }, 10000);
     }
 
     scrollContainer.addEventListener('touchstart', pauseAutoScroll);
     scrollContainer.addEventListener('mousedown', pauseAutoScroll);
+    scrollContainer.addEventListener('scroll', pauseAutoScroll);
 
-    scrollContainer.addEventListener('scroll', () => {
-      const scrollLeft = scrollContainer.scrollLeft;
-      let index = 0;
-      for (let i = 0; i < cards.length; i++) {
-        if (scrollLeft + scrollContainer.offsetWidth / 2 < cards[i].offsetLeft + cards[i].offsetWidth / 2) {
-          index = i;
-          break;
-        }
-      }
-      updateDots(index);
-      currentIndex = index;
-    });
+    // Запускаем автопрокрутку
+    intervalId = startAutoScroll();
   </script>
 
 </body>
