@@ -1,3 +1,4 @@
+quicktime, [03.07.2025 8:43]
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,7 +8,7 @@
   <style>
     @font-face {
       font-family: 'Swiss911';
-      src: url('swiss911compressedrusbyme.otf') format('truetype');
+      src: url('Swiss911CompressedRegular.ttf') format('truetype');
     }
 
     body {
@@ -20,21 +21,21 @@
 
     .menu-btn {
       position: fixed;
-      top: 20px;
+      top: 10px; /* было 20px */
       right: 20px;
       background: none;
       border: none;
       cursor: pointer;
       z-index: 100;
-      padding: 15px;
+      padding: 10px;
     }
 
     .menu-btn span {
       display: block;
-      width: 30px;
-      height: 4px;
+      width: 26px; /* чуть меньше */
+      height: 3px; /* было 4px */
       background: white;
-      margin: 6px 0;
+      margin: 5px 0;
     }
 
     .menu {
@@ -63,11 +64,11 @@
 
     .header {
       text-align: center;
-      padding-top: 60px;
+      padding-top: 30px; /* было 60px */
     }
 
     .logo {
-      width: 160px;
+      width: 140px; /* немного меньше */
       margin: 0 auto;
       display: block;
     }
@@ -83,13 +84,13 @@
       display: flex;
       overflow-x: auto;
       background: black;
-      border-top: 2px solid white;
-      border-bottom: 2px solid white;
+      border-top: 1px solid white;
+      border-bottom: 1px solid white;
     }
 
     .logo-strip img {
-      height: 60px;
-      padding: 10px 20px;
+      height: 40px; /* было 60px */
+      padding: 8px 16px;
     }
 
     .section-title {
@@ -97,38 +98,51 @@
       text-align: left;
       padding: 30px 20px 10px;
       text-transform: uppercase;
-      border-bottom: 2px solid white;
+      /* удалён нижний бордер */
+      margin-bottom: 10px;
+    }
+
+    /* Контейнер для прокрутки афиш */
+    .event-scroll-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 16px;
+      padding: 0 20px 40px;
     }
 
     .event-block {
+      flex: 0 0 80%;
+      scroll-snap-align: start;
       background: white;
       color: black;
-      margin: 20px;
-      padding: 40px 20px;
-      text-align: center;
+      padding: 30px 20px;
       font-family: monospace;
+      border-radius: 10px;
+      min-width: 280px;
     }
 
     .event-block .date {
-      font-size: 36px;
+      font-size: 28px;
       margin: 10px 0;
     }
 
     .event-block .title {
-      font-size: 44px;
-      margin: 20px 0;
+      font-size: 36px;
+      margin: 10px 0 20px;
       font-weight: bold;
       letter-spacing: 8px;
     }
 
     .event-block .artists {
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.8;
     }
 
     @media (max-width: 600px) {
       .event-block .title {
-        font-size: 32px;
+        font-size: 28px;
       }
     }
   </style>
@@ -151,33 +165,39 @@
 
   <!-- Логотип и фон -->
   <div class="header">
-    <img src="IMG_7312.PNG" class="logo" alt="STRET Logo">
+    <img src="IMG_8931.png" class="logo" alt="STRET Logo">
   </div>
   <img src="photo_2025-06-26_21-21-35.jpg" class="bg-photo" alt="Background Crowd">
 
   <!-- Полоса с логотипами -->
   <div class="logo-strip">
-    <img src="IMG_7312.PNG" alt="logo">
-    <img src="IMG_7312.PNG" alt="logo">
-    <img src="IMG_7312.PNG" alt="logo">
-    <img src="IMG_7312.PNG" alt="logo">
-    <img src="IMG_7312.PNG" alt="logo">
+    <img src="IMG_8931.png" alt="logo">
+    <img src="IMG_8931.png" alt="logo">
+    <img src="IMG_8931.png" alt="logo">
+    <img src="IMG_8931.png" alt="logo">
+    <img src="IMG_8931.png" alt="logo">
   </div>
 
-  <!-- Событие -->
+  <!-- События -->
   <div class="section-title">Events</div>
-  <div class="event-block">
-    <div class="title">PARTY</div>
-    <div class="date">09.05.2025</div>
-    <div class="artists">
-      MAELKVAC<br>
-      VLADLEN MALYSHKA<br>
-      YUKOV
+  <div class="event-scroll-container">
+    <div class="event-block">
+      <div class="title">PARTY</div>
+      <div class="date">09.05.2025</div>
+      <div class="artists">
+        MAELKVAC<br>
+        VLADLEN MALYSHKA<br>
+        YUKOV
+      </div>
     </div>
+    <!-- Можно добавить ещё афиши сюда -->
   </div>
 
   <script>
-    const menuBtn = document.getElementById("menuBtn");
+    const menuBtn = document.
+
+quicktime, [03.07.2025 8:43]
+getElementById("menuBtn");
     const menu = document.getElementById("menu");
 
     menuBtn.onclick = function () {
