@@ -123,18 +123,22 @@
 
     .logo-strip-inner {
       display: flex;
-      min-width: 100%;
-      animation: moveLogosRight 30s linear infinite;
+      width: 200%; /* ширина в 2 раза больше для 2 копий */
+      animation: moveLogos 30s linear infinite;
     }
 
-    @keyframes moveLogosRight {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+    @keyframes moveLogos {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     .logo-strip img {
       height: 40px;
-      padding: 6px 14px;
+      padding: 0 14px; /* можно чуть уменьшить, если есть видимые пробелы */
       flex-shrink: 0;
     }
 
@@ -212,15 +216,15 @@
 <body>
 
   <!-- Кнопка меню -->
-  <button class="menu-btn" id="menuBtn">
+
+<button class="menu-btn" id="menuBtn">
     <span></span>
     <span></span>
     <span></span>
   </button>
 
   <!-- Меню -->
-
-<div class="menu" id="menu">
+  <div class="menu" id="menu">
     <div class="menu-item">Events</div>
     <div class="menu-item">Shop</div>
     <div class="menu-item">Q&A</div>
@@ -235,6 +239,16 @@
   <!-- Логотипы -->
   <div class="logo-strip">
     <div class="logo-strip-inner">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo">
+
+      <!-- Повтор копии логотипов для бесшовной анимации -->
       <img src="IMG_7312.PNG" alt="logo">
       <img src="IMG_7312.PNG" alt="logo">
       <img src="IMG_7312.PNG" alt="logo">
@@ -336,16 +350,21 @@
     scrollContainer.addEventListener('mousedown', pauseAutoScroll);
 
     scrollContainer.addEventListener('scroll', () => {
-      const scrollLeft = scrollContainer.scrollLeft;
-      let index = 0;
-      for (let i = 0; i < cards.length; i++) {
-        if (scrollLeft + scrollContainer.offsetWidth / 2 < cards[i].offsetLeft + cards[i].offsetWidth / 2) {
-          index = i;
-          break;
+      const center = scrollContainer.scrollLeft + scrollContainer.offsetWidth / 2;
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+cards.forEach((card, i) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(center - cardCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = i;
         }
-      }
-      updateDots(index);
-      currentIndex = index;
+      });
+
+      updateDots(closestIndex);
+      currentIndex = closestIndex;
     });
   </script>
 
