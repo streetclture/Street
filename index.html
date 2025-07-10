@@ -42,27 +42,17 @@
       transition: all 0.3s ease;
     }
 
-    .menu-btn span:nth-child(1) {
-      top: 10px;
-    }
-
-    .menu-btn span:nth-child(2) {
-      top: 18px;
-    }
-
-    .menu-btn span:nth-child(3) {
-      top: 26px;
-    }
+    .menu-btn span:nth-child(1) { top: 10px; }
+    .menu-btn span:nth-child(2) { top: 18px; }
+    .menu-btn span:nth-child(3) { top: 26px; }
 
     .menu-btn.active span:nth-child(1) {
       top: 18px;
       transform: rotate(45deg);
     }
-
     .menu-btn.active span:nth-child(2) {
       opacity: 0;
     }
-
     .menu-btn.active span:nth-child(3) {
       top: 18px;
       transform: rotate(-45deg);
@@ -80,9 +70,7 @@
       padding-top: 80px;
     }
 
-    .menu.active {
-      right: 0;
-    }
+    .menu.active { right: 0; }
 
     .menu-item {
       color: white;
@@ -90,6 +78,7 @@
       padding: 18px 30px;
       border-bottom: 2px solid #333;
       letter-spacing: 1px;
+      cursor: pointer;
     }
 
     .header {
@@ -99,11 +88,7 @@
       z-index: 1;
     }
 
-    .logo {
-      width: 140px;
-      margin: 0 auto;
-      display: block;
-    }
+    .logo { width: 140px; margin: 0 auto; display: block; }
 
     .bg-photo {
       width: 100%;
@@ -123,22 +108,18 @@
 
     .logo-strip-inner {
       display: flex;
-      width: 200%; /* ширина в 2 раза больше для 2 копий */
+      width: 200%;
       animation: moveLogos 30s linear infinite;
     }
 
     @keyframes moveLogos {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .logo-strip img {
       height: 40px;
-      padding: 0 14px; /* можно чуть уменьшить, если есть видимые пробелы */
+      padding: 0 14px;
       flex-shrink: 0;
     }
 
@@ -163,9 +144,7 @@
       -ms-overflow-style: none;
     }
 
-    .event-scroll::-webkit-scrollbar {
-      display: none;
-    }
+    .event-scroll::-webkit-scrollbar { display: none; }
 
     .event-block {
       flex: 0 0 80%;
@@ -207,17 +186,14 @@
     }
 
     @media (max-width: 600px) {
-      .event-block {
-        flex: 0 0 75%;
-      }
+      .event-block { flex: 0 0 75%; }
     }
   </style>
 </head>
 <body>
 
   <!-- Кнопка меню -->
-
-<button class="menu-btn" id="menuBtn">
+  <button class="menu-btn" id="menuBtn">
     <span></span>
     <span></span>
     <span></span>
@@ -225,8 +201,8 @@
 
   <!-- Меню -->
   <div class="menu" id="menu">
-    <div class="menu-item">Events</div>
-    <div class="menu-item">Shop</div>
+    <div class="menu-item" onclick="scrollToSection('events')">Events</div>
+    <div class="menu-item" onclick="scrollToSection('shop')">Shop</div>
     <div class="menu-item">Q&A</div>
   </div>
 
@@ -239,46 +215,19 @@
   <!-- Логотипы -->
   <div class="logo-strip">
     <div class="logo-strip-inner">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-
-      <!-- Повтор копии логотипов для бесшовной анимации -->
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
-      <img src="IMG_7312.PNG" alt="logo">
+      <!-- 16 логотипов -->
+      ${'<img src="IMG_7312.PNG" alt="logo">'.repeat(16)}
     </div>
   </div>
 
-  <!-- Блок Events -->
-  <div class="section-title">Events</div>
-
+  <!-- Events -->
+  <div class="section-title" id="events">Events</div>
   <div class="event-scroll" id="eventScroll">
-    <div class="event-block">
-      <img src="photo_2025-06-30_16-23-29.jpg" alt="Афиша 1" class="poster-img">
-    </div>
-    <div class="event-block">
-      <img src="IMG_9994.JPEG" alt="Афиша 2" class="poster-img">
-    </div>
-    <div class="event-block">
-      <img src="IMG_9995.JPEG" alt="Афиша 3" class="poster-img">
-    </div>
-    <div class="event-block">
-      <img src="IMG_9996.JPG" alt="Афиша 4" class="poster-img">
-    </div>
+    <div class="event-block"><img src="photo_2025-06-30_16-23-29.jpg" alt="Афиша 1" class="poster-img"></div>
+    <div class="event-block"><img src="IMG_9994.JPEG" alt="Афиша 2" class="poster-img"></div>
+    <div class="event-block"><img src="IMG_9995.JPEG" alt="Афиша 3" class="poster-img"></div>
+    <div class="event-block"><img src="IMG_9996.JPG" alt="Афиша 4" class="poster-img"></div>
   </div>
-
-  <!-- Индикаторы -->
   <div class="dots" id="dots">
     <div class="dot active"></div>
     <div class="dot"></div>
@@ -286,8 +235,27 @@
     <div class="dot"></div>
   </div>
 
+  <!-- 🛍️ Shop -->
+  <div class="section-title" id="shop">Shop</div>
+  <div class="event-scroll">
+    <div class="event-block">
+      <a href="product1.html">
+        <img src="products/tshirt1.jpg" alt="STRET T-Shirt" class="poster-img">
+      </a>
+    </div>
+    <div class="event-block">
+      <a href="product2.html">
+        <img src="products/hoodie1.jpg" alt="STRET Hoodie" class="poster-img">
+      </a>
+    </div>
+    <div class="event-block">
+      <a href="product3.html">
+        <img src="products/cap1.jpg" alt="STRET Cap" class="poster-img">
+      </a>
+    </div>
+  </div>
+
   <script>
-    // Меню с анимацией
     const menuBtn = document.getElementById("menuBtn");
     const menu = document.getElementById("menu");
 
@@ -304,7 +272,16 @@
       }
     });
 
-    // Автопрокрутка и точки
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        menu.classList.remove("active");
+        menuBtn.classList.remove("active");
+      }
+    }
+
+    // Автопрокрутка Events
     const scrollContainer = document.getElementById('eventScroll');
     const cards = scrollContainer.querySelectorAll('.event-block');
     const dots = document.getElementById('dots').querySelectorAll('.dot');
@@ -354,7 +331,7 @@
       let closestIndex = 0;
       let closestDistance = Infinity;
 
-cards.forEach((card, i) => {
+      cards.forEach((card, i) => {
         const cardCenter = card.offsetLeft + card.offsetWidth / 2;
         const distance = Math.abs(center - cardCenter);
         if (distance < closestDistance) {
@@ -364,9 +341,7 @@ cards.forEach((card, i) => {
       });
 
       updateDots(closestIndex);
-      currentIndex = closestIndex;
     });
   </script>
-
 </body>
 </html>
