@@ -3,102 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <title>STRET Shop</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
+    @font-face {
+      font-family: 'Swiss911';
+      src: url('swiss911compressedrusbyme.otf') format('truetype');
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
-      background: black;
-      color: white;
-      font-family: sans-serif;
+      background: #fafafa;
+      color: #111;
+      font-family: 'Swiss911', Arial, sans-serif;
     }
-
-    .header {
-      text-align: center;
-      padding: 20px;
-    }
-
-    .logo {
-      width: 140px;
-    }
-
-    .section-title {
-      font-size: 32px;
-      text-align: center;
-      margin: 30px 0 10px;
-      text-transform: uppercase;
-    }
-
-    .products {
+    .topbar {
+      position: sticky; top: 0;
+      background: #fff;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      z-index: 10;
     }
-
+    .logo-small {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .cart {
+      position: relative;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .cart::after {
+      content: attr(data-count);
+      position: absolute;
+      top: -6px; right: -6px;
+      width: 18px; height: 18px;
+      background: #111; color: #fff;
+      border-radius: 50%;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+      padding: 16px;
+    }
     .product-card {
-      background: #111;
-      padding: 10px;
-      width: 180px;
-      text-align: center;
-      border: 1px solid #333;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
       transition: transform 0.2s;
     }
-
     .product-card:hover {
-      transform: scale(1.05);
+      transform: translateY(-4px);
     }
-
     .product-card img {
       width: 100%;
-      height: auto;
+      height: 200px;
+      object-fit: cover;
     }
-
+    .product-info {
+      padding: 12px;
+      flex-grow: 1;
+    }
     .product-name {
-      margin: 10px 0;
-    }
-
-    .product-card a {
-      display: inline-block;
-      color: white;
-      background: #333;
-      padding: 6px 12px;
-      text-decoration: none;
       font-size: 14px;
-      margin-top: 5px;
+      font-weight: bold;
+      margin-bottom: 6px;
     }
-
-    .product-card a:hover {
-      background: white;
-      color: black;
+    .product-price {
+      font-size: 14px;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <a href="index.html"><img src="IMG_7312.PNG" class="logo" alt="STRET logo"></a>
+  <div class="topbar">
+    <div class="logo-small">STRET</div>
+    <div class="cart" data-count="0">🛍️</div>
   </div>
-
-  <div class="section-title">Shop</div>
 
   <div class="products">
-    <div class="product-card">
-      <img src="products/tshirt1.jpg" alt="T-shirt">
-      <div class="product-name">STRET T-Shirt</div>
-      <a href="product1.html">Подробнее</a>
-    </div>
-
-    <div class="product-card">
-      <img src="products/hoodie1.jpg" alt="Hoodie">
-      <div class="product-name">STRET Hoodie</div>
-      <a href="product2.html">Подробнее</a>
-    </div>
-
-    <div class="product-card">
-      <img src="products/cap1.jpg" alt="Cap">
-      <div class="product-name">STRET Cap</div>
-      <a href="product3.html">Подробнее</a>
-    </div>
+    <a href="product1.html" class="product-card">
+      <img src="products/tshirt1.jpg" alt="STRET T‑Shirt">
+      <div class="product-info">
+        <div class="product-name">STRET T‑Shirt</div>
+        <div class="product-price">₽3 290</div>
+      </div>
+    </a>
+    <a href="product2.html" class="product-card">
+      <img src="products/hoodie1.jpg" alt="STRET Hoodie">
+      <div class="product-info">
+        <div class="product-name">STRET Hoodie</div>
+        <div class="product-price">₽6 990</div>
+      </div>
+    </a>
+    <a href="product3.html" class="product-card">
+      <img src="products/cap1.jpg" alt="STRET Cap">
+      <div class="product-info">
+        <div class="product-name">STRET Cap</div>
+        <div class="product-price">₽1 990</div>
+      </div>
+    </a>
+    <!-- Добавь больше товаров по той же структуре -->
   </div>
+
+  <script>
+    // Пример обновления счётчика в корзине
+    let cartCount = 0;
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', () => {
+        cartCount++;
+        document.querySelector('.cart').setAttribute('data-count', cartCount);
+      });
+    });
+  </script>
 </body>
 </html>
