@@ -42,17 +42,27 @@
       transition: all 0.3s ease;
     }
 
-    .menu-btn span:nth-child(1) { top: 10px; }
-    .menu-btn span:nth-child(2) { top: 18px; }
-    .menu-btn span:nth-child(3) { top: 26px; }
+    .menu-btn span:nth-child(1) {
+      top: 10px;
+    }
+
+    .menu-btn span:nth-child(2) {
+      top: 18px;
+    }
+
+    .menu-btn span:nth-child(3) {
+      top: 26px;
+    }
 
     .menu-btn.active span:nth-child(1) {
       top: 18px;
       transform: rotate(45deg);
     }
+
     .menu-btn.active span:nth-child(2) {
       opacity: 0;
     }
+
     .menu-btn.active span:nth-child(3) {
       top: 18px;
       transform: rotate(-45deg);
@@ -70,7 +80,9 @@
       padding-top: 80px;
     }
 
-    .menu.active { right: 0; }
+    .menu.active {
+      right: 0;
+    }
 
     .menu-item {
       color: white;
@@ -88,7 +100,11 @@
       z-index: 1;
     }
 
-    .logo { width: 140px; margin: 0 auto; display: block; }
+    .logo {
+      width: 140px;
+      margin: 0 auto;
+      display: block;
+    }
 
     .bg-photo {
       width: 100%;
@@ -113,8 +129,12 @@
     }
 
     @keyframes moveLogos {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     .logo-strip img {
@@ -144,14 +164,13 @@
       -ms-overflow-style: none;
     }
 
-    .event-scroll::-webkit-scrollbar { display: none; }
+    .event-scroll::-webkit-scrollbar {
+      display: none;
+    }
 
     .event-block {
       flex: 0 0 80%;
       scroll-snap-align: center;
-      background: transparent;
-      padding: 0;
-      border-radius: 0;
       min-width: 260px;
       max-width: 300px;
       text-align: center;
@@ -162,7 +181,6 @@
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
-      border-radius: 0;
     }
 
     .dots {
@@ -186,7 +204,9 @@
     }
 
     @media (max-width: 600px) {
-      .event-block { flex: 0 0 75%; }
+      .event-block {
+        flex: 0 0 75%;
+      }
     }
   </style>
 </head>
@@ -201,58 +221,58 @@
 
   <!-- Меню -->
   <div class="menu" id="menu">
-    <div class="menu-item" onclick="scrollToSection('events')">Events</div>
-    <div class="menu-item" onclick="scrollToSection('shop')">Shop</div>
+    <div class="menu-item">Events</div>
+    <div class="menu-item" onclick="window.location.href='shop.html'">Shop</div>
     <div class="menu-item">Q&A</div>
   </div>
 
-  <!-- Верх -->
+  <!-- Логотип -->
   <div class="header">
     <img src="IMG_7312.PNG" class="logo" alt="STRET Logo">
   </div>
+
+  <!-- Фон -->
   <img src="photo_2025-06-26_21-21-35.jpg" class="bg-photo" alt="Background Crowd">
 
-  <!-- Логотипы -->
+  <!-- Полоса с логотипами -->
   <div class="logo-strip">
     <div class="logo-strip-inner">
-      <!-- 16 логотипов -->
-      ${'<img src="IMG_7312.PNG" alt="logo">'.repeat(16)}
+      <!-- Повтор логотипов -->
+      <img src="IMG_7312.PNG" alt="logo"><img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo"><img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo"><img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo"><img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo"><img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo"><img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo"><img src="IMG_7312.PNG" alt="logo">
+      <img src="IMG_7312.PNG" alt="logo"><img src="IMG_7312.PNG" alt="logo">
     </div>
   </div>
 
   <!-- Events -->
-  <div class="section-title" id="events">Events</div>
+  <div class="section-title">Events</div>
+
   <div class="event-scroll" id="eventScroll">
-    <div class="event-block"><img src="photo_2025-06-30_16-23-29.jpg" alt="Афиша 1" class="poster-img"></div>
-    <div class="event-block"><img src="IMG_9994.JPEG" alt="Афиша 2" class="poster-img"></div>
-    <div class="event-block"><img src="IMG_9995.JPEG" alt="Афиша 3" class="poster-img"></div>
-    <div class="event-block"><img src="IMG_9996.JPG" alt="Афиша 4" class="poster-img"></div>
+    <div class="event-block">
+      <img src="photo_2025-06-30_16-23-29.jpg" alt="Афиша 1" class="poster-img">
+    </div>
+    <div class="event-block">
+      <img src="IMG_9994.JPEG" alt="Афиша 2" class="poster-img">
+    </div>
+    <div class="event-block">
+      <img src="IMG_9995.JPEG" alt="Афиша 3" class="poster-img">
+    </div>
+    <div class="event-block">
+      <img src="IMG_9996.JPG" alt="Афиша 4" class="poster-img">
+    </div>
   </div>
+
+  <!-- Точки -->
   <div class="dots" id="dots">
     <div class="dot active"></div>
     <div class="dot"></div>
     <div class="dot"></div>
     <div class="dot"></div>
-  </div>
-
-  <!-- 🛍️ Shop -->
-  <div class="section-title" id="shop">Shop</div>
-  <div class="event-scroll">
-    <div class="event-block">
-      <a href="product1.html">
-        <img src="products/tshirt1.jpg" alt="STRET T-Shirt" class="poster-img">
-      </a>
-    </div>
-    <div class="event-block">
-      <a href="product2.html">
-        <img src="products/hoodie1.jpg" alt="STRET Hoodie" class="poster-img">
-      </a>
-    </div>
-    <div class="event-block">
-      <a href="product3.html">
-        <img src="products/cap1.jpg" alt="STRET Cap" class="poster-img">
-      </a>
-    </div>
   </div>
 
   <script>
@@ -272,16 +292,6 @@
       }
     });
 
-    function scrollToSection(id) {
-      const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-        menu.classList.remove("active");
-        menuBtn.classList.remove("active");
-      }
-    }
-
-    // Автопрокрутка Events
     const scrollContainer = document.getElementById('eventScroll');
     const cards = scrollContainer.querySelectorAll('.event-block');
     const dots = document.getElementById('dots').querySelectorAll('.dot');
@@ -340,7 +350,8 @@
         }
       });
 
-      updateDots(closestIndex);
+      currentIndex = closestIndex;
+      updateDots(currentIndex);
     });
   </script>
 </body>
