@@ -30,21 +30,8 @@
       font-weight: bold;
     }
     .cart {
-      position: relative;
-      font-size: 20px;
+      font-size: 24px;
       cursor: pointer;
-    }
-    .cart::after {
-      content: attr(data-count);
-      position: absolute;
-      top: -6px; right: -6px;
-      width: 18px; height: 18px;
-      background: #111; color: #fff;
-      border-radius: 50%;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
     .products {
       display: grid;
@@ -89,7 +76,7 @@
 <body>
   <div class="topbar">
     <div class="logo-small">STRET</div>
-    <div class="cart" data-count="0">🛍️</div>
+    <div class="cart">🛍️</div>
   </div>
 
   <div class="products">
@@ -114,18 +101,7 @@
         <div class="product-price">₽1 990</div>
       </div>
     </a>
-    <!-- Добавь больше товаров по той же структуре -->
+    <!-- Добавьте нужное количество товаров -->
   </div>
-
-  <script>
-    // Пример обновления счётчика в корзине
-    let cartCount = 0;
-    document.querySelectorAll('.product-card').forEach(card => {
-      card.addEventListener('click', () => {
-        cartCount++;
-        document.querySelector('.cart').setAttribute('data-count', cartCount);
-      });
-    });
-  </script>
 </body>
 </html>
