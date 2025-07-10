@@ -5,34 +5,21 @@
   <title>STRET Shop</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-    @font-face {
-      font-family: 'Swiss911';
-      src: url('swiss911compressedrusbyme.otf') format('truetype');
-    }
+    @font-face { font-family: 'Swiss911'; src: url('swiss911compressedrusbyme.otf') format('truetype'); }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #fafafa;
-      color: #111;
-      font-family: 'Swiss911', Arial, sans-serif;
-    }
+    body { background: #fafafa; color: #111; font-family: 'Swiss911', Arial, sans-serif; }
     .topbar {
       position: sticky; top: 0;
       background: #fff;
-      display: flex;
-      justify-content: space-between;
+      display: flex; justify-content: space-between;
       align-items: center;
       padding: 12px 16px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       z-index: 10;
     }
-    .logo-small {
-      font-size: 20px;
-      font-weight: bold;
-    }
-    .cart {
-      font-size: 24px;
-      cursor: pointer;
-    }
+    .logo-small { font-size: 20px; font-weight: bold; cursor: pointer; }
+    .cart { cursor: pointer; }
+    .cart svg { width: 24px; height: 24px; }
     .products {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -50,9 +37,7 @@
       flex-direction: column;
       transition: transform 0.2s;
     }
-    .product-card:hover {
-      transform: translateY(-4px);
-    }
+    .product-card:hover { transform: translateY(-4px); }
     .product-card img {
       width: 100%;
       height: 200px;
@@ -62,21 +47,20 @@
       padding: 12px;
       flex-grow: 1;
     }
-    .product-name {
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
-    .product-price {
-      font-size: 14px;
-      color: #555;
-    }
+    .product-name { font-size: 14px; font-weight: bold; margin-bottom: 6px; }
+    .product-price { font-size: 14px; color: #555; }
   </style>
 </head>
 <body>
+
   <div class="topbar">
-    <div class="logo-small">STRET</div>
-    <div class="cart">🛍️</div>
+    <div class="logo-small" onclick="window.location.href='index.html'">STRET</div>
+    <div class="cart" onclick="window.location.href='cart.html'">
+      <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+      </svg>
+    </div>
   </div>
 
   <div class="products">
@@ -101,7 +85,7 @@
         <div class="product-price">₽1 990</div>
       </div>
     </a>
-    <!-- Добавьте нужное количество товаров -->
   </div>
+
 </body>
 </html>
