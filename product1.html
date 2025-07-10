@@ -5,41 +5,38 @@
   <title>STRET T‑Shirt</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-    @font-face { font-family: 'Swiss911'; src: url('swiss911compressedrusbyme.otf') format('truetype'); }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #fafafa; color: #111; font-family: 'Swiss911', Arial, sans-serif; }
-    .topbar {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 16px; background: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    .logo-small, .cart { cursor: pointer; }
-    .cart svg { width: 24px; height: 24px; }
+    @font-face { font-family:'Swiss911'; src:url('swiss911compressedrusbyme.otf'); }
+    * { margin:0;padding:0;box-sizing:border-box; }
+    body { font-family:'Swiss911',sans-serif; background:#fafafa; color:#111; padding:16px; }
+    .topbar { display:flex; justify-content:space-between; align-items:center;
+      padding:12px 16px; background:#fff;
+      box-shadow:0 2px 4px rgba(0,0,0,0.05); }
+    .logo-small, .cart { cursor:pointer; }
+    .cart svg { width:24px;height:24px; }
     .product-container {
-      max-width: 600px; margin: 24px auto;
-      background: #fff; border-radius: 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1); overflow: hidden;
+      max-width:600px; margin:24px auto;
+      background:#fff; border-radius:12px;
+      box-shadow:0 1px 4px rgba(0,0,0,0.1); overflow:hidden;
     }
-    .product-image { width: 100%; object-fit: cover; }
-    .product-details { padding: 16px; }
-    .product-name { font-size: 20px; font-weight: bold; margin-bottom: 8px; }
-    .product-price { font-size: 18px; color: #555; margin-bottom: 16px; }
-    .product-desc { font-size: 14px; line-height: 1.5; margin-bottom: 24px; }
+    .product-image { width:100%; height:auto; object-fit:cover; }
+    .product-details { padding:16px; }
+    .product-name { font-size:20px; font-weight:bold; margin-bottom:8px; }
+    .product-price { font-size:18px; color:#555; margin-bottom:16px; }
+    .product-desc { font-size:14px; line-height:1.5; margin-bottom:24px; }
     .buy-btn {
-      display: block; text-align: center;
-      background: #111; color: #fff;
-      padding: 12px; font-size: 16px;
-      text-decoration: none; border-radius: 0 0 12px 12px;
+      display:block; width:100%; text-align:center;
+      background:#111; color:#fff; padding:12px; font-size:16px;
+      text-decoration:none;
     }
   </style>
 </head>
 <body>
-
   <div class="topbar">
-    <div class="logo-small" onclick="window.location.href='shop.html'">← STRET</div>
-    <div class="cart" onclick="window.location.href='cart.html'">
-      <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+    <div class="logo-small" onclick="location.href='shop.html'">← STRET</div>
+    <div class="cart" onclick="location.href='cart.html'">
+      <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
         <line x1="3" y1="6" x2="21" y2="6"/>
       </svg>
     </div>
@@ -51,11 +48,10 @@
       <div class="product-name">STRET T‑Shirt</div>
       <div class="product-price">₽3 290</div>
       <div class="product-desc">
-        Классическая футболка STRET из плотного хлопка. Прямой крой, лимитированная серия. Идеальна для повседневного стиля.
+        Удобная футболка из 100% хлопка, прямой крой, лимитированный дроп.
       </div>
     </div>
-    <a href="#" class="buy-btn">Купить</a>
+    <a href="https://example.com/pay?item=tshirt1" class="buy-btn">Купить с оплатой</a>
   </div>
-
 </body>
 </html>
